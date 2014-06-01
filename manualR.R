@@ -130,14 +130,14 @@ text
 a function extracting content from a
 PDF
 . The function must accept a file path as first argu-
-  ment and must return a character vector.
+   ment and must return a character vector.
 Value
 A
 function
 with the signature
 elem, language, id
 :
-  elem
+   elem
 a list with the named component
 uri
 which must hold a valid file name.
@@ -158,10 +158,10 @@ to list available reader functions.
 Examples
 uri <- system.file(file.path("doc", "tm.pdf"), package = "tm")
 if(all(file.exists(Sys.which(c("pdfinfo", "pdftotext"))))) {
-  pdf <- readPDF(control = list(text = "-layout"))(elem = list(uri = uri),
-                                                   language = "en",
-                                                   id = "id1")
-  pdf[1:13]
+   pdf <- readPDF(control = list(text = "-layout"))(elem = list(uri = uri),
+                                                    language = "en",
+                                                    id = "id1")
+   pdf[1:13]
 }
 Corpus(URISource(uri),
        readerControl = list(reader = readPDF(engine = "ghostscript")))
@@ -204,7 +204,7 @@ tm_map(crude, stemDocument)
 ## Generate a custom transformation function which takes the heading
 ## as new content
 headings <- function(x)
-  PlainTextDocument(Heading(x), id = ID(x), language = Language(x))
+   PlainTextDocument(Heading(x), id = ID(x), language = Language(x))
 inspect(tm_map(crude, headings))
 
 funs <- list(stripWhitespace, removePunctuation, tolower)
@@ -218,10 +218,10 @@ scan_tokenizer(crude[[1]])
 inspect(weightBin(tdm))
 
 inspect(tdms <- TermDocumentMatrix(crude,
-                   control = list(removePunctuation = TRUE,
-                                  stopwords = TRUE,
-                                  weighting = function(x)
-                                    weightSMART(x, spec = "ntc"))))
+                                   control = list(removePunctuation = TRUE,
+                                                  stopwords = TRUE,
+                                                  weighting = function(x)
+                                                     weightSMART(x, spec = "ntc"))))
 as.vector(tdms[,1])%*%as.vector(tdms[,2])
 as.matrix(tdms)
 (macierzpodobienstw <- t(as.matrix(tdms))%*%as.matrix(tdms))
